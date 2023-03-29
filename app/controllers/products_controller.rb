@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
-  def product
-    # render json: {message: "Product"}
+  def index
+    # render json: {message: "We love products"}
   
     @product = Product.all
-    render template: "products/show"
+    render json: @products
   end
 
 end
