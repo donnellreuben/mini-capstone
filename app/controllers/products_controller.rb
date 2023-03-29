@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   def index
     # render json: {message: "We love products"}
   
-    @product = Product.all
+    @products = Product.all
     render json: @products
   end
 
