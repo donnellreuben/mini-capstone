@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
     # render json: {message: "We love products"}
   
     @products = Product.all
-    # render json: @products
+    # render json: @products This will render the same but with "created_at"
     render template: "products/index"
   end
 
