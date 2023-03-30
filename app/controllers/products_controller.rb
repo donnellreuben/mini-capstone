@@ -33,6 +33,23 @@ class ProductsController < ApplicationController
     render :show
   end
 
+
+  def update
+  #find the right product in the database
+    @product = Product.find_by(id: params[:id])
+  #modify that product
+    @product.name = params[:name]
+    @product.price = params[:price]
+    @product.image_url = params[:image_url]
+    @product.description = params[:description]
+
+  #save the modified recipe
+    @product.save
+
+  #render the new saved recipe
+    # render json: {message:"hello"}
+    render :show
+  end
 end
 
 
