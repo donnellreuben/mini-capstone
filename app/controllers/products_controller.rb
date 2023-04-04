@@ -1,11 +1,13 @@
 class ProductsController < ApplicationController
   protect_from_forgery with: :exception, unless: -> { request.format.json? }
 
-  def index
+#INDEX
+  def index                                    
     @products = Product.all
     render :index
   end
 
+#CREATE
   def create
     @product = Product.create(
 			name: params[:name],
@@ -16,14 +18,14 @@ class ProductsController < ApplicationController
     render :show
   end
 
-  def show
+#SHOW
+  def show                                        
     @product = Product.find_by(id: params[:id])
     render :show
   end
 
-
-
-  def update
+#UPDATE
+  def update            
     @product = Product.find_by(id: params[:id])
     @product.update(
       name: params[:name] || @product.name,
@@ -34,9 +36,12 @@ class ProductsController < ApplicationController
     render :show
   end
 
+#DESTROY
   def destroy
     @photo = Photo.find_by(id: params[:id])
     @photo.destroy
     render json: { message: "Photo destroyed successfully" }
   end 
+
+#FIN
 end
