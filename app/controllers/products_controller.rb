@@ -1,56 +1,42 @@
 class ProductsController < ApplicationController
+  protect_from_forgery with: :exception, unless: -> { request.format.json? }
+
   def index
-    # render json: {message: "We love products"}
-  
     @products = Product.all
-    # render json: @products This will render the same but with "created_at"
     render :index
-
-
-
-  end
-
-  def show 
-    @product = Product.find_by(id: params[:id])
-    render :show
   end
 
   def create
-    # make a new recipe in the db
-    # p params[:title]
-    p params[:name]
-
-    @product = Product.new(
-      name: params[:name],
+    @product = Product.create(
+			name: params[:name],
       price: params[:price],
       image_url: params[:image_url],
       description: params[:description]
-    )
-
-    @product = Product.new(
-      name: "Gatorade", price: 50, image_url: "https://imgs.search.brave.com/gUG6nrXZefSNqCaSS_MDFRBbiWaNQEdJY2jrb-W9ReE/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9pbWFn/ZXMtbmEuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/LzcxTkt3b0VHQlZM/LmpwZw", description: "an American brand of sports-themed beverage and food products, built around its signature line of sports drinks.")
-    @product.save
+	)
     render :show
   end
+
+  def show
+    @product = Product.find_by(id: params[:id])
+    render :show
+  end
+
 
 
   def update
-  #find the right product in the database
     @product = Product.find_by(id: params[:id])
-  #modify that product
-    @product.name = params[:name]
-    @product.price = params[:price]
-    @product.image_url = params[:image_url]
-    @product.description = params[:description]
-
-  #save the modified recipe
-    @product.save
-
-  #render the new saved recipe
-    # render json: {message:"hello"}
+    @product.update(
+      name: params[:name] || @product.name,
+      price: params[:price]|| @product.price,
+      image_url: params[:image_url] || @product.image_url,
+      description: params[:description] || @prdocut.description
+      )
     render :show
   end
+
+  def destroy
+    @photo = Photo.find_by(id: params[:id])
+    @photo.destroy
+    render json: { message: "Photo destroyed successfully" }
+  end 
 end
-
-
-
