@@ -2,4 +2,4 @@
 2. Use the rails console or seeds file to add 2 or 3 suppliers to your database.
 3. Then, add a migration to add supplier_id (which must be an integer) to your products table.
 4. Use the rails console or Postico to associate products with suppliers by updating the empty supplier_id data.
-5. Bonus: Create routes and a controller for your Supplier model, so a user can CRUD a supplier. (edited
+5. Bonus: Create routes and a controller for your Supplier model, so a user can CRUD a supplier. 
