@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-
+  belongs_to :supplier	
 #Validations  
   validates :name, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
@@ -24,6 +24,7 @@ class Product < ApplicationRecord
     total = tax + price
     return total
   end
+
 
 #FIN
 end
